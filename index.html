@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Central R. Argentina</title>
+</head>
+
+<body>
+    <script>
+        fetch("https://api.estadisticasbcra.com/inflacion_mensual_oficial:", {
+            Headers: {
+                Authorization: "BEARER eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTU5NjE2NzEsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJldmlzZW5iYWlyZXNAZ21haWwuY29tIn0.c2ulMoI9VFck60jibbKzkyaKYKJc2ECVskxtrUWCJqzMp3vUg0lskdGpid_JlsKiMudQghvIfTm6ILzOasic_Q",
+            },
+
+
+
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data)
+            })
+
+
+
+    </script>
+
+</body>
+
+</html>
