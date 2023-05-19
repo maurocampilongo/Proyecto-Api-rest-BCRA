@@ -14,38 +14,26 @@
     <div id="lista-api"></div>
 
     <script>
-        $("#boton").on("click", leerApi);
+        const fetchData = async () => {
+        const apiUrl = "usd";
+        const proxyUrl = "https://bcra-proxy-cors.vercel.app";
 
-        function leerApi() {
-            alert('Llamando a la API del BCRA, espere un cachito');
+        try {
+          const response = await fetch(`${proxyUrl}/${apiUrl}`, {
+            headers: {
+              Authorization:
+                "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTU5NjE2NzEsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJldmlzZW5iYWlyZXNAZ21haWwuY29tIn0.c2ulMoI9VFck60jibbKzkyaKYKJc2ECVskxtrUWCJqzMp3vUg0lskdGpid_JlsKiMudQghvIfTm6ILzOasic_Q'",
+            },
+          });
 
-            $.ajax({
-                url: 'https://api.estadisticasbcra.com/inflacion_mensual_oficial',
-                type: 'GET',
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader('Authorization', 'Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MTU5NjE2NzEsInR5cGUiOiJleHRlcm5hbCIsInVzZXIiOiJldmlzZW5iYWlyZXNAZ21haWwuY29tIn0.c2ulMoI9VFck60jibbKzkyaKYKJc2ECVskxtrUWCJqzMp3vUg0lskdGpid_JlsKiMudQghvIfTm6ILzOasic_Q');
-                },
-                success: function (respuesta) {
-                    console.log(respuesta);
-
-                    var listaAPI = $("#lista-api");
-
-                    $.each(respuesta, function (index, miembro) {
-                        listaAPI.append(
-                            '<div>' +
-                            '<p>' + 'Fecha: ' + miembro.d + '<br>' +
-                            'Valor: ' + miembro.v + '<br>' +
-                            '<br>' + '______________________________________' +
-                            '</div>'
-                        );
-                    });
-                },
-                error: function () {
-                    alert("Hubo un error");
-                    console.log("Error al leer la API");
-                }
-            });
+          const data = await response.json();
+          console.log(data);
+        } catch (error) {
+          console.error(error);
         }
+      };
+
+      fetchData();
     </script>
 </body>
 </html>
